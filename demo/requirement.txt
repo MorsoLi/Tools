@@ -1,4 +1,6 @@
 gunicorn==20.0.0
-pytest==5.2.2
+Jinja2==2.10
 requests==2.18.4
+requests-unixsocket==0.1.5
+requests-wsgi-adapter==0.4.1
 WebOb==1.8.5
