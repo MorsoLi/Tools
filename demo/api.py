@@ -1,9 +1,12 @@
 from webob import Request,Response
 from parse import parse
+import inspect
 class API:
     def __init__(self):
         self.routes={}
     def route(self,path):
+        if path in self.routes:
+            raise AssertionError('the route already exists')
         def wrapper(handler):
             self.routes[path]=handler
             return handler
@@ -24,8 +27,12 @@ class API:
         if handler is None:
             self.default_response(response)
         else:
+            if inspect.isclass(handler):
+                handler=getattr(handler(),request.method.lower(),None)
+                if handler is None:
+                    raise AttributeError('method is not allowed',request.method)
             handler(request,response,**kwargs)
         return response
     def default_response(self,response):
-        response.status_code=404
-        response.text='Not Found'
+        response.status_code=200
+        response.text='Hello World!'
