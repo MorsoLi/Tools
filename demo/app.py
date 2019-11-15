@@ -19,7 +19,7 @@ app=API()
 
 @app.route('/hello/{name}')
 def greeting(request,response,name):
-    response.text=f'hello {name}'
+    response.text='hello {}'.format(name)
 
 @app.route('/book')
 class BookHandler:

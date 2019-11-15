@@ -4,8 +4,6 @@ import inspect
 import os
 from jinja2 import Environment,FileSystemLoader
 
-
-
 class API:
     def __init__(self,template_url='templates'):
         self.routes={}
