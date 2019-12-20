@@ -177,11 +177,7 @@ class Worker(Thread):
                 print(f'找不到用户mid:{mid}')
                 raise UserNotFoundException(f'找不到用户mid:{mid}')
             if 'data' in res_json:
-                if res_json['data']['card']['fans'] < 5000 or res_json['data']['card']['fans'] > 50000:
-                    print(f'用户不符合要求mid:{mid}')
-                    raise UserNotFoundException(f'用户不符合要求mid:{mid}')
-                else:
-                    return res_json['data']['card']
+                return res_json['data']['card']
             print(f'获取用户id: {mid} 详情失败: data字段不存在!')
         return
 
